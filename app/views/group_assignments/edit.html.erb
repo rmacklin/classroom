@@ -18,6 +18,7 @@
       <div class="two-thirds column">
         <%= render 'shared/error_messages', object: f.object %>
         <%= render partial: 'group_assignments/group_assignment_form_options', locals: { f: f } %>
+        <%= render partial: 'shared/tasks', object: @group_assignment.tasks, locals: { assignment: @group_assignment } %>
       </div>
 
       <div class="one-third column dangerzone-container">

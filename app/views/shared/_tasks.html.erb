@@ -1,0 +1,16 @@
+<h3>Tasks</h3>
+<p>
+  You can break long-term assignments into a set of tasks.
+  Each task will be created as an issue in the student repositories.
+</p>
+
+<% if tasks.count > 0 %>
+  <ol class="task-list">
+    <% tasks.each do |task| %>
+      <li>
+        <%= link_to task.title, edit_polymorphic_path([assignment.organization, assignment, task]) %>
+      </li>
+    <% end %>
+  </ol>
+<% end %>
+<%= link_to 'Add a task', new_polymorphic_path([assignment.organization, assignment, :task]), class: 'btn' %>

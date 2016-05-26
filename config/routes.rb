@@ -39,8 +39,17 @@ Rails.application.routes.draw do
         patch :setup_organization
       end
 
-      resources :assignments
-      resources :group_assignments, path: 'group-assignments'
+      resources :assignments do
+        scope path_names: { edit: 'edit' } do
+          resources :tasks, only: [:new, :create, :edit, :update, :destroy]
+        end
+      end
+
+      resources :group_assignments, path: 'group-assignments' do
+        scope path_names: { edit: 'edit' } do
+          resources :tasks, only: [:new, :create, :edit, :update, :destroy]
+        end
+      end
     end
   end
 

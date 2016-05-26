@@ -1,0 +1,11 @@
+<%= render 'shared/error_messages', object: f.object %>
+
+<dl class="form">
+  <dt><%= f.label :title %></dt>
+  <dd><%= f.text_field :title %></dd>
+</dl>
+
+<dl class="form">
+  <dt><%= f.label :body %></dt>
+  <dd><%= f.text_area :body %></dd>
+</dl>
