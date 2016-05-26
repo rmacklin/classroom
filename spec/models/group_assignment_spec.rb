@@ -55,6 +55,17 @@ RSpec.describe GroupAssignment, type: :model do
       end
     end
 
+    describe 'when it has associated tasks' do
+      it 'destroys them when it is destroyed' do
+        tasks = [
+          Task.create!(title: 'Task 1', assignment: subject),
+          Task.create!(title: 'Task 2', assignment: subject)
+        ]
+        expect(subject.tasks.to_a).to eql(tasks)
+        expect { subject.destroy }.to change { Task.count }.by(-2)
+      end
+    end
+
     describe '#flipper_id' do
       it 'should return an id' do
         expect(subject.flipper_id).to eq("GroupAssignment:#{subject.id}")

@@ -12,6 +12,7 @@ class Assignment < ActiveRecord::Base
 
   has_many :assignment_repos, dependent: :destroy
   has_many :users,            through:   :assignment_repos
+  has_many :tasks, -> { order(position: :asc) }, as: :assignment, dependent: :destroy
 
   belongs_to :creator, class_name: User
   belongs_to :organization

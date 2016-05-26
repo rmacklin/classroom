@@ -11,6 +11,7 @@ class GroupAssignment < ActiveRecord::Base
   has_one :group_assignment_invitation, dependent: :destroy, autosave: true
 
   has_many :group_assignment_repos, dependent: :destroy
+  has_many :tasks, -> { order(position: :asc) }, as: :assignment, dependent: :destroy
 
   belongs_to :creator, class_name: User
   belongs_to :grouping
