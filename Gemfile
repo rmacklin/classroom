@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 ruby '2.3.1'
 gem 'rails', '4.2.6'
 
+gem 'acts_as_list'
 gem 'airbrake'
 gem 'autoprefixer-rails'
 
