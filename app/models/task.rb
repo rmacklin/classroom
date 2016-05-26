@@ -4,4 +4,8 @@ class Task < ActiveRecord::Base
   acts_as_list scope: [:assignment_id, :assignment_type]
 
   validates :title, presence: true
+
+  def to_param
+    position.to_s
+  end
 end
