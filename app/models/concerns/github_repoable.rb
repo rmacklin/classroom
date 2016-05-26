@@ -45,6 +45,24 @@ module GitHubRepoable
 
   # Public
   #
+  def open_issues_for_assignment_tasks
+    return true if tasks.empty?
+
+    # TODO: Don't use creator. We discussed using the student account, but for
+    # group assignments there are multiple students. So we might want to use a
+    # bot account instead.
+    client = creator.github_client
+
+    # TODO: move this to a job, change the redirect page to poll for success
+    delete_github_repository_on_failure do
+      assignment.tasks.each do |task|
+        client.create_issue(github_repo_id, task.title, task.body)
+      end
+    end
+  end
+
+  # Public
+  #
   def silently_destroy_github_repository
     destroy_github_repository
     true # Destroy ActiveRecord object even if we fail to delete the repository

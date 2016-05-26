@@ -26,6 +26,7 @@ class GroupAssignmentRepo < ActiveRecord::Base
       create_github_repository
       push_starter_code
       add_team_to_github_repository
+      open_issues_for_assignment_tasks
     end
   end
 
@@ -59,6 +60,12 @@ class GroupAssignmentRepo < ActiveRecord::Base
   #
   def starter_code_repo_id
     group_assignment.starter_code_repo_id
+  end
+
+  # Public
+  #
+  def tasks
+    group_assignment(includes: :tasks).tasks
   end
 
   private

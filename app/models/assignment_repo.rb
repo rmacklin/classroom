@@ -22,6 +22,7 @@ class AssignmentRepo < ActiveRecord::Base
       create_github_repository
       push_starter_code
       add_user_as_collaborator
+      open_issues_for_assignment_tasks
     end
   end
 
@@ -55,6 +56,12 @@ class AssignmentRepo < ActiveRecord::Base
   #
   def starter_code_repo_id
     assignment.starter_code_repo_id
+  end
+
+  # Public
+  #
+  def tasks
+    assignment(includes: :tasks).tasks
   end
 
   # Public: This method is used for legacy purposes
